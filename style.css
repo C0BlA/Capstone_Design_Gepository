@@ -1,0 +1,513 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+body:not(.chat-body) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 로그인 */
+.login-container {
+    width: 520px;
+    padding: 48px 60px;
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(80, 84, 105, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.login-container h1 {
+    margin: 0 0 30px 0;
+    font-size: 32px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    border: 1px solid #cfcfcf;
+    border-radius: 14px;
+    font-size: 16px;
+    outline: none;
+}
+
+.login-container input:focus {
+    border-color: #dfe8bc;
+    box-shadow: 0 0 0 3px rgba(185, 185, 217, 0.15);
+}
+
+.login-container button,
+.login-container .button-link {
+    width: 100%;
+    height: 64px;
+    border: none;
+    border-radius: 14px;
+    background-color: #dfe8bc;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.login-container button:hover,
+.login-container .button-link:hover {
+    background-color: #dfe8bc;
+}
+
+.login-container p {
+    margin: 24px 0 10px 0;
+    font-size: 18px;
+    color: #111;
+}
+
+.login-container a {
+    text-decoration: none;
+    color: #dfe8bc;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* 회원가입 */
+.signup-container {
+    width: 600px;
+    height: 780px;
+    padding: 50px 50px 36px 50px;
+    background-color: white;
+    border-radius: 28px;
+    box-shadow: 0 8px 24px rgba(80, 84, 105, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 30px;
+
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+}
+
+.signup-container h1 {
+    margin: 0 0 22px 0;
+    font-size: 32px;
+}
+
+.signup-step-text {
+    color: #dfe8bc;
+    font-size: 16px;
+    margin: 0 0 26px 0;
+}
+
+.signup-step {
+    display: none;
+    grid-row: 3;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.signup-step.active {
+    display: flex;
+}
+
+.step-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.signup-step input {
+    width: 100%;
+    padding: 18px;
+    box-sizing: border-box;
+    border: 1px solid #cfcfcf;
+    border-radius: 14px;
+    font-size: 16px;
+    outline: none;
+    margin: 0;
+}
+
+.signup-step input:focus {
+    border-color: #dfe8bc;
+    box-shadow: 0 0 0 3px rgba(185, 185, 217, 0.15);
+}
+
+.step-actions {
+    padding-top: 28px;
+}
+
+.signup-btn {
+    width: 100%;
+    height: 64px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    background-color: #dfe8bc;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.signup-btn:hover {
+    background-color: #dfe8bc;
+}
+
+.step-button-group {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.back-btn,
+.complete-btn {
+    flex: 1;
+    height: 64px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+}
+
+.back-btn {
+    background-color: #dfe8bc;
+    color: white;
+    font-weight: 500;
+}
+
+.complete-btn {
+    background-color: #dfe8bc;
+    color: white;
+    font-weight: 600;
+}
+
+.complete-btn:hover {
+    background-color: #dfe8bc;
+}
+
+.signup-footer {
+    grid-row: 4;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.signup-footer p {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #111;
+}
+
+.signup-footer a {
+    text-decoration: none;
+    color: #dfe8bc;
+    font-size: 18px;
+    font-weight: 600;
+}
+/*진행바*/
+.progress-wrap {
+    width: 100%;
+    margin: 20px 0 30px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #f3f9d9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 50%;
+    height: 100%;
+    background:#dfe8bc;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+/* 채팅 화면 */
+.chat-body {
+    background-color: #e9eef3;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.chat-app {
+    flex: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #cfcfcf;
+    transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 24px 30px 20px 30px;
+    background: transparent;
+    color: #3d3f46;
+    border-bottom: none;
+    box-sizing: border-box;
+}
+
+.menu-btn {
+    border: none;
+    background: transparent;
+    color: #4b4b4b;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+}
+
+.username {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2f3442;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.credit {
+    font-size: 12px;
+    color: #5f6472;
+    margin-top: 6px;
+    line-height: 1;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 14px 24px 24px 24px;
+    overflow-y: auto;
+    background-color: #cfcfcf;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    display: block;
+    width: fit-content;
+    max-width: 60%;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.message.bot {
+        background:
+        radial-gradient(
+            ellipse at center,
+            #cfcfcf 0%,
+            #ebebeb 38%,
+            #f4f4f4 72%,
+            #ffffff 100%
+        );
+    color: #3f3f46;
+    margin-right: auto;
+    border-radius: 22px;
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.95),
+        inset 0 -2px 6px rgba(0, 0, 0, 0.05),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.message.user {
+      background:
+        radial-gradient(
+            ellipse at center,
+            #dfe8bc 0%,
+            #edf4d6 30%,
+            #f7faec 72%,
+            #ffffff 100%
+        );
+    color: #3f3f46;
+    margin-left: auto;
+    border-radius: 22px;
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.9),
+        inset 0 -2px 6px rgba(170, 185, 120, 0.10),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 18px 20px;
+    background-color: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.chat-input-area input {
+    flex: 1;
+    padding: 12px 14px;
+    font-size: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    background-color: #e9e8e8;
+    color: #3d3f46;
+}
+
+.chat-input-area button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e5e5e5;
+    color: #3f3f46;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-input-area button:hover {
+    background-color: #b8bbde;
+}
+
+.button-link {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background-color: #b9b9d9;
+    color: white !important;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.button-link:hover {
+    background-color: #b9b9d9;
+}
+
+.app-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 320px;
+    background: #ffffff;
+    color: #3f3f46;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    box-sizing: border-box;
+    transition: width 0.3s ease, padding 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    position: relative;
+    z-index: 20;
+}
+
+.sidebar.closed {
+    width: 0;
+    padding: 0;
+    border-right: none;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(180, 184, 204, 0.25);
+}
+
+.sidebar-credit {
+    font-size: 13px;
+    color: #72788a;
+}
+
+.new-chat-btn {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background-color: #e3e3e3;
+    color: #4b4b4b;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.new-chat-btn:hover {
+    background-color: #efefef;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-item {
+    padding: 14px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #4b4b4b;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.chat-item:hover {
+    background-color:rgba(255, 255, 255, 0.45);
+    color: #222;
+}
+
+.chat-item.active {
+    background-color: #7a7a7a;
+    color: #ffffff;
+}
+
+.chat-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.18);
+    opacity: 1;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    z-index: 10;
+    pointer-events: none;
+}

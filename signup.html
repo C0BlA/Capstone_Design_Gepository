@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <div class="signup-container">
+    <h1 id="signup-title">회원가입</h1>
+    
+    <div class="progress-wrap">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="step1" class="signup-step active">
+        <div class="step-fields">
+            <input type="text" placeholder="이름 입력">
+            <input type="email" placeholder="이메일 입력">
+            <input type="text" placeholder="아이디 입력">
+            <input type="password" placeholder="비밀번호 입력">
+            <input type="password" placeholder="비밀번호 확인">
+        </div>
+
+        <div class="step-actions">
+            <button type="button" class="signup-btn" onclick="goToStep2()">다음</button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="signup-step">
+        <div class="step-fields">
+            <input type="text" placeholder="CPU 입력">
+            <input type="text" placeholder="그래픽카드 입력">
+            <input type="text" placeholder="RAM 입력">
+            <input type="text" placeholder="MAC 주소 입력">
+        </div>
+
+        <div class="step-actions">
+            <div class="step-button-group">
+                <button type="button" class="back-btn" onclick="goToStep1()">이전</button>
+                <button type="button" class="complete-btn" onclick="location.href='login.html'">가입 완료</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="signup-footer">
+        <p>이미 계정이 있나요?</p>
+        <a href="login.html">로그인으로 돌아가기</a>
+    </div>
+</div>
+
+    <script>
+        function goToStep2() {
+            document.getElementById("step1").classList.remove("active");
+            document.getElementById("step2").classList.add("active");
+            document.getElementById("progress-fill").style.width = "100%";
+        }
+
+        function goToStep1() {
+            document.getElementById("step2").classList.remove("active");
+            document.getElementById("step1").classList.add("active");
+            document.getElementById("progress-fill").style.width = "50%";
+        }
+    </script>
+
+</body>
+</html>
