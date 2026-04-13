@@ -4,11 +4,7 @@ FastAPI + MySQL 기반의 최소 서버 뼈대입니다.
 
 ## 포함 기능
 - 노드 CRUD API
-- 태스크 CRUD 일부 API
 - FastAPI WebSocket 기반 노드 register / heartbeat
-- heartbeat timeout 시 offline 처리
-- SQLAlchemy 모델
-- Alembic 마이그레이션 초안
 
 ## 실행
 
@@ -18,8 +14,6 @@ source .venv/bin/activate  # Windows는 .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env
 ```
-
-MySQL에 `agent_server` 데이터베이스를 먼저 생성한 뒤:
 
 ```bash
 alembic upgrade head
