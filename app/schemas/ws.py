@@ -26,7 +26,7 @@ class RegisterMessage(BaseModel):
 class HeartbeatResource(BaseModel):
     cpu_usage: float | None = None
     ram_usage_mb: int | None = None
-    gpu_usage: list[dict[str, Any]] | None = None
+    gpu_usage: list[dict[str, Any]] | list[Any] = Field(default_factory=list)
 
 
 class HeartbeatMessage(BaseModel):

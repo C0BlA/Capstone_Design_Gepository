@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node Live Monitor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 24px;
+      background: #111;
+      color: #eee;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .status-bar {
+      margin-bottom: 20px;
+      color: #bbb;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1b1b1b;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #333;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: #222;
+    }
+
+    .online {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    .offline {
+      color: #f87171;
+      font-weight: bold;
+    }
+
+    .busy {
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .draining {
+      color: #60a5fa;
+      font-weight: bold;
+    }
+
+    .muted {
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live Node Monitor</h1>
+  <div class="status-bar">
+    WebSocket 상태: <span id="ws-status">연결 중...</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>이름</th>
+        <th>호스트</th>
+        <th>상태</th>
+        <th>CPU</th>
+        <th>RAM(MB)</th>
+        <th>GPU</th>
+        <th>그룹</th>
+        <th>OS</th>
+        <th>ARCH</th>
+        <th>마지막 heartbeat</th>
+      </tr>
+    </thead>
+    <tbody id="nodes-body"></tbody>
+  </table>
+
+  <script>
+    const wsStatus = document.getElementById("ws-status");
+    const tbody = document.getElementById("nodes-body");
+
+    function formatDate(value) {
+      if (!value) return "-";
+      try {
+        return new Date(value).toLocaleString();
+      } catch {
+        return value;
+      }
+    }
+
+    function renderNodes(nodes) {
+      tbody.innerHTML = "";
+
+      if (!nodes || nodes.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="11" class="muted">연결된 노드가 없습니다.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      for (const node of nodes) {
+        const tr = document.createElement("tr");
+
+        const statusClass = node.status || "offline";
+
+        tr.innerHTML = `
+          <td>${node.id ?? "-"}</td>
+          <td>${node.node_name ?? "-"}</td>
+          <td>${node.host ?? "-"}</td>
+          <td class="${statusClass}">${node.status ?? "-"}</td>
+          <td>${node.cpu_cores ?? "-"}</td>
+          <td>${node.ram_mb ?? "-"}</td>
+          <td>${node.gpu_count ?? "-"}</td>
+          <td>${node.node_group ?? "-"}</td>
+          <td>${node.os_info ?? "-"}</td>
+          <td>${node.arch ?? "-"}</td>
+          <td>${formatDate(node.last_seen_at)}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function connectMonitor() {
+      const protocol = location.protocol === "https:" ? "wss" : "ws";
+      const ws = new WebSocket(`${protocol}://${location.host}/ws/monitor`);
+
+      ws.onopen = () => {
+        wsStatus.textContent = "연결됨";
+      };
+
+      ws.onclose = () => {
+        wsStatus.textContent = "끊김. 재연결 시도 중...";
+        setTimeout(connectMonitor, 2000);
+      };
+
+      ws.onerror = () => {
+        wsStatus.textContent = "에러 발생";
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+
+          if (data.type === "nodes_snapshot") {
+            renderNodes(data.nodes);
+          }
+        } catch (err) {
+          console.error("메시지 파싱 실패:", err);
+        }
+      };
+
+      // 연결 유지용 ping
+      setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send("ping");
+        }
+      }, 10000);
+    }
+
+    connectMonitor();
+  </script>
+</body>
+</html>

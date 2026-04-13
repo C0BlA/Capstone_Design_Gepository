@@ -8,7 +8,7 @@ class NodeBase(BaseModel):
     owner_user_id: int | None = None
     node_name: str = Field(..., min_length=1, max_length=100)
     host: str | None = None
-    machine_fingerprint_hash: str = Field(..., min_length=16, max_length=128)
+    machine_fingerprint_hash: str = Field(..., min_length=16, max_length=128) # 멕 주소 해시 값
     node_group: str | None = Field(default=None, max_length=50)
     cpu_cores: int = Field(default=0, ge=0)
     ram_mb: int = Field(default=0, ge=0)
