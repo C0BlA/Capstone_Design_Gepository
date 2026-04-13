@@ -111,10 +111,10 @@ python3 -m http.server 3000
 
 ---
 
-## DB 설정 (서버 팀 확인 필요)
+## DB 설정 (서버 확인 필요)
 
 `Capstone_Design_Gepository-server/.env`의 DB 비밀번호가 실제 MySQL과 불일치합니다.  
-서버 팀에서 올바른 비밀번호로 수정해야 합니다:
+서버에서 올바른 비밀번호로 수정해야 합니다:
 
 ```
 DATABASE_URL=mysql+pymysql://root:<실제 비밀번호>@localhost:3306/agent_server
