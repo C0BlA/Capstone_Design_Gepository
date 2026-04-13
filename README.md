@@ -1,7 +1,5 @@
 # Agent Resource Server
 
-FastAPI + MySQL 기반의 최소 서버 뼈대입니다.
-
 ## 포함 기능
 - 노드 CRUD API
 - FastAPI WebSocket 기반 노드 register / heartbeat
