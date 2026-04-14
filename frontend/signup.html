@@ -20,11 +20,11 @@
     <!-- Step 1 -->
     <div id="step1" class="signup-step active">
         <div class="step-fields">
-            <input type="text" placeholder="이름 입력">
-            <input type="email" placeholder="이메일 입력">
-            <input type="text" placeholder="아이디 입력">
-            <input type="password" placeholder="비밀번호 입력">
-            <input type="password" placeholder="비밀번호 확인">
+            <input type="text" id="signup-name" placeholder="이름 입력">
+            <input type="email" id="signup-email" placeholder="이메일 입력">
+            <input type="text" id="signup-username" placeholder="아이디 입력">
+            <input type="password" id="signup-password" placeholder="비밀번호 입력">
+            <input type="password" id="signup-password-confirm" placeholder="비밀번호 확인">
         </div>
 
         <div class="step-actions">
@@ -44,7 +44,7 @@
         <div class="step-actions">
             <div class="step-button-group">
                 <button type="button" class="back-btn" onclick="goToStep1()">이전</button>
-                <button type="button" class="complete-btn" onclick="location.href='login.html'">가입 완료</button>
+                <button type="button" class="complete-btn" onclick="handleSignup()">가입 완료</button>
             </div>
         </div>
     </div>
@@ -55,6 +55,7 @@
     </div>
 </div>
 
+    <script src="script.js"></script>
     <script>
         function goToStep2() {
             document.getElementById("step1").classList.remove("active");
